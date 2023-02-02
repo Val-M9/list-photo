@@ -9,7 +9,9 @@ const lightTheme = {
     text: ColorPalette.brown,
     accent: ColorPalette.accent,
     cardBackground: ColorPalette.lightBrown,
-    btnBackground: ColorPalette.lightBlue,
+    btnBackground: ColorPalette.blue,
+    btnDisabled: ColorPalette.lightBlue,
+    white: ColorPalette.white,
   },
 };
 
@@ -21,7 +23,9 @@ const darkTheme = {
     text: ColorPalette.white,
     accent: ColorPalette.accent,
     cardBackground: ColorPalette.lavenderGray,
-    btnBackground: ColorPalette.lightBlue,
+    btnBackground: ColorPalette.blue,
+    btnDisabled: ColorPalette.lightBlue,
+    white: ColorPalette.white,
   },
 };
 
