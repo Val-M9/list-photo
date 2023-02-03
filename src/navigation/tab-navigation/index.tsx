@@ -6,22 +6,35 @@ import {
 } from '@react-navigation/material-top-tabs';
 import {TabOptions} from '../../common/types';
 import {MainScreenName} from '../../common/enums';
+import {useCustomTheme} from '../../hooks';
 import {Feeds, Profile} from '../../screens';
 import {HomeIcon, UserIcon} from '../../components/icons';
+import {ColorPalette} from '../../styles';
 import {styles} from './styles';
 
 const Tabs = createMaterialTopTabNavigator();
 
-const screenOptions: MaterialTopTabNavigationOptions = {
-  tabBarItemStyle: {flexDirection: 'row', alignItems: 'center', justifyContent: 'center'},
-};
-
-const getTabOptions = ({label, tabBarIcon}: TabOptions): MaterialTopTabNavigationOptions => ({
-  tabBarIcon,
-  tabBarLabel: () => <Text style={styles.text}>{label}</Text>,
+const getTabOptions = ({label, Icon}: TabOptions): MaterialTopTabNavigationOptions => ({
+  tabBarIcon: ({focused, color}) =>
+    Icon({size: 18, solid: true, color: focused ? ColorPalette.accent : color}),
+  tabBarLabel: ({color}) => <Text style={[styles.text, {color: color}]}>{label}</Text>,
 });
 
 const MainNavigation: FC = () => {
+  const {colors} = useCustomTheme();
+
+  const screenOptions: MaterialTopTabNavigationOptions = {
+    tabBarItemStyle: {flexDirection: 'row'},
+    tabBarStyle: {
+      backgroundColor: colors.backgroundSecondary,
+    },
+    tabBarActiveTintColor: colors.accent,
+    tabBarInactiveTintColor: colors.text,
+    tabBarIndicatorStyle: {
+      backgroundColor: colors.accent,
+    },
+  };
+
   return (
     <Tabs.Navigator screenOptions={screenOptions}>
       <Tabs.Screen
@@ -29,7 +42,7 @@ const MainNavigation: FC = () => {
         component={Feeds}
         options={getTabOptions({
           label: MainScreenName.HOME,
-          tabBarIcon: () => HomeIcon({size: 18, solid: true}),
+          Icon: HomeIcon,
         })}
       />
       <Tabs.Screen
@@ -37,7 +50,7 @@ const MainNavigation: FC = () => {
         component={Profile}
         options={getTabOptions({
           label: MainScreenName.PROFILE,
-          tabBarIcon: () => UserIcon({size: 18, solid: true}),
+          Icon: UserIcon,
         })}
       />
     </Tabs.Navigator>
