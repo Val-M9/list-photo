@@ -1,12 +1,22 @@
 import React, {FC} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import {View, Text} from 'react-native';
+import {Button, Input} from '../../components';
+import {ScreenWrapper} from '../../components/screen-wrapper';
+import {useCustomTheme} from '../../hooks';
+import {styles} from './styles';
 
 const Login: FC = () => {
+  const {colors} = useCustomTheme();
+
   return (
-    <View>
-      <Text>View</Text>
-      <TextInput placeholder="input" />
-    </View>
+    <ScreenWrapper>
+      <View style={styles.container}>
+        <Text style={[styles.heading, {color: colors.text}]}>Authorization</Text>
+        <Input placeholder="Email" style={styles.input} />
+        <Input placeholder="Password" secureTextEntry={true} style={styles.input} />
+        <Button label="Login" />
+      </View>
+    </ScreenWrapper>
   );
 };
 

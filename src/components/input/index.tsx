@@ -4,7 +4,7 @@ import {useCustomTheme} from '../../hooks';
 import {InputProps} from './prop-types';
 import {styles} from './styles';
 
-const Input: FC<InputProps> = ({placeholder, secureTextEntry}) => {
+const Input: FC<InputProps> = ({placeholder, secureTextEntry, style}) => {
   const {colors} = useCustomTheme();
 
   return (
@@ -19,6 +19,7 @@ const Input: FC<InputProps> = ({placeholder, secureTextEntry}) => {
           backgroundColor: colors.backgroundSecondary,
           borderColor: colors.backgroundSecondary,
         },
+        style,
       ]}
     />
   );
