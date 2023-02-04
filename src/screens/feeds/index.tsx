@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
-import {Text, View} from 'react-native';
+import {Text} from 'react-native';
+import {ScreenWrapper} from '../../components';
 
 const Feeds: FC = () => {
   return (
-    <View>
+    <ScreenWrapper>
       <Text>Feeds</Text>
-    </View>
+    </ScreenWrapper>
   );
 };
 

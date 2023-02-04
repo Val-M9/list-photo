@@ -1,10 +1,13 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import {MainNavigation} from './tab-navigation';
 import {MainScreenName, RootScreenName} from '../common/enums';
+import {useAppDispatch, useAppSelector} from '../hooks';
+import {selectUser} from '../store/selectors';
+import {getUser} from '../store/actions';
 import {Login} from '../screens';
 
 const NativeStack = createNativeStackNavigator();
@@ -14,7 +17,13 @@ const screenOptions: NativeStackNavigationOptions = {
 };
 
 const Navigation: FC = () => {
-  const user = true;
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+
+  useEffect(() => {
+    dispatch(getUser());
+  });
+
   return (
     <NativeStack.Navigator screenOptions={screenOptions}>
       {!user ? (
