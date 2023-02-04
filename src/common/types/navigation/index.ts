@@ -1,4 +1,4 @@
-import {AppIcon} from './../icon';
+import {AppIcon} from '../icon/icon';
 
 export type TabOptions = {
   label: string;
