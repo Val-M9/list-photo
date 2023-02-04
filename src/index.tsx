@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
+import 'fast-text-encoding';
 import {useCustomTheme} from './hooks';
 import {store} from './store/store';
 import {Navigation} from './navigation';
