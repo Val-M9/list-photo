@@ -20,4 +20,12 @@ const getUser = createAsyncThunk<string | undefined, undefined, AsyncThunkConfig
   },
 );
 
-export {signInUser, getUser};
+const logout = createAsyncThunk<void, string, AsyncThunkConfig>(
+  ActionType.LOGOUT,
+  async (payload, {extra}) => {
+    const {storage} = extra;
+    return await storage.logout(payload);
+  },
+);
+
+export {signInUser, getUser, logout};

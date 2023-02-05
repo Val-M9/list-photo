@@ -19,6 +19,14 @@ const storage = {
       console.log(err);
     }
   },
+
+  async logout(email: string): Promise<void> {
+    try {
+      AsyncStorage.removeItem(email);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 export {storage};

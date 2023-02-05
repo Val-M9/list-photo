@@ -1,13 +1,12 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AsyncThunkConfig, Images} from '../../common/types';
+import {AsyncThunkConfig, ImageDto, QueryParams} from '../../common/types';
 import {ActionType} from './action-type';
 
-const fetchImages = createAsyncThunk<Images, undefined, AsyncThunkConfig>(
+const fetchImages = createAsyncThunk<ImageDto[] | undefined, QueryParams, AsyncThunkConfig>(
   ActionType.FETCH_IMAGES,
-  async (_, {extra}) => {
+  async (params, {extra}) => {
     const {apiCall} = extra;
-    const result = await apiCall.getImages();
-    return result;
+    return apiCall.getImages(params);
   },
 );
 

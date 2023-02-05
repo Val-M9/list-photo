@@ -6,5 +6,3 @@ export type ImageDto = {
   url: string;
   download_url: string;
 };
-
-export type Images = ImageDto[];

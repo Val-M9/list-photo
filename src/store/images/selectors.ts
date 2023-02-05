@@ -1,8 +1,8 @@
-import {Images} from '../../common/types/images/image-dto';
+import {ImageDto} from './../../common/types';
 import {AppState} from '../../common/types';
 import {DataStatus} from '../../common/enums';
 
-const selectImages = (state: AppState): Images => {
+const selectImages = (state: AppState): ImageDto[] => {
   return state.images.images;
 };
 

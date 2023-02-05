@@ -1,10 +1,10 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {Images} from '../../common/types/images/image-dto';
+import {ImageDto} from '../../common/types';
 import {fetchImages} from './actions';
 import {DataStatus} from '../../common/enums';
 
 type InitialState = {
-  images: Images;
+  images: ImageDto[];
   dataStatus: DataStatus;
 };
 
@@ -17,10 +17,15 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(fetchImages.fulfilled, (state, {payload}) => {
       state.dataStatus = DataStatus.FULFILLED;
-      state.images = [...state.images, ...payload];
+      if (payload) {
+        state.images = [...state.images, ...payload];
+      }
     })
     .addCase(fetchImages.pending, (state) => {
       state.dataStatus = DataStatus.PENDING;
+    })
+    .addCase(fetchImages.rejected, (state) => {
+      state.dataStatus = DataStatus.REJECTED;
     });
 });
 
