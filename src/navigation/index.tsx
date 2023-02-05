@@ -22,7 +22,7 @@ const Navigation: FC = () => {
 
   useEffect(() => {
     dispatch(getUser());
-  });
+  }, [dispatch]);
 
   return (
     <NativeStack.Navigator screenOptions={screenOptions}>

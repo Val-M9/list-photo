@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
+import {View, Text} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import {useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi';
-import {View, Text} from 'react-native';
 import {DEFAULT_LOGIN_VALUES} from '../../common/constants';
-import {UserSignInDto} from '../../common/types';
-import {signInUser} from '../../store/actions';
+import {UserSignInDto, MainNavigationProps} from '../../common/types';
+import {MainScreenName} from '../../common/enums';
+import {getUser, signInUser} from '../../store/actions';
 import {loginRules} from '../../validation/login-rules';
 import {useAppDispatch, useCustomTheme} from '../../hooks';
 import {Button, Input, ScreenWrapper} from '../../components';
@@ -13,6 +15,8 @@ import {styles} from './styles';
 const Login: FC = () => {
   const {colors} = useCustomTheme();
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<MainNavigationProps>();
+
   const {
     control,
     handleSubmit,
@@ -22,8 +26,12 @@ const Login: FC = () => {
     resolver: joiResolver(loginRules),
   });
 
-  const onSubmit = (values: UserSignInDto) => {
-    dispatch(signInUser(values.email));
+  const onSubmit = async (values: UserSignInDto) => {
+    await dispatch(signInUser(values.email));
+    const user = await dispatch(getUser());
+    if (user) {
+      navigation.navigate(MainScreenName.MAIN);
+    }
   };
 
   return (

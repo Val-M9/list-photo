@@ -1,6 +1,3 @@
-import {AppIcon} from '../icon/icon';
-
-export type TabOptions = {
-  label: string;
-  Icon: AppIcon;
-};
+export type {TabOptions} from './tab-options';
+export type {MainNavigationParamList} from './main-navigation-param-list';
+export type {MainNavigationProps} from './navigation-props';
