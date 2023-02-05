@@ -10,7 +10,6 @@ import {darkTheme, lightTheme} from './styles/theme';
 const App: FC = () => {
   let {dark} = useCustomTheme();
   dark = false;
-
   return (
     <Provider store={store}>
       <NavigationContainer theme={dark ? darkTheme : lightTheme}>
