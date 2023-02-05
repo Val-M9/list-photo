@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {AsyncThunkConfig} from '../../common/types';
+import {AsyncThunkConfig, UserInfoDto} from '../../common/types';
 import {ActionType} from './action-type';
 
 const signInUser = createAsyncThunk<void, string, AsyncThunkConfig>(
@@ -11,7 +11,7 @@ const signInUser = createAsyncThunk<void, string, AsyncThunkConfig>(
   },
 );
 
-const getUser = createAsyncThunk<string | undefined, undefined, AsyncThunkConfig>(
+const fetchUser = createAsyncThunk<string | undefined, undefined, AsyncThunkConfig>(
   ActionType.GET_USER,
   async (_, {extra}) => {
     const {storage} = extra;
@@ -20,6 +20,13 @@ const getUser = createAsyncThunk<string | undefined, undefined, AsyncThunkConfig
   },
 );
 
+const fetchUserInfo = createAsyncThunk<UserInfoDto | undefined, undefined, AsyncThunkConfig>(
+  ActionType.GET_USE_INFO,
+  async (_, {extra}) => {
+    const {apiCall} = extra;
+    return await apiCall.getUserInfo();
+  },
+);
 const logout = createAsyncThunk<void, string, AsyncThunkConfig>(
   ActionType.LOGOUT,
   async (payload, {extra}) => {
@@ -28,4 +35,4 @@ const logout = createAsyncThunk<void, string, AsyncThunkConfig>(
   },
 );
 
-export {signInUser, getUser, logout};
+export {signInUser, fetchUser, logout, fetchUserInfo};

@@ -1,4 +1,4 @@
-import {AppState} from '../../common/types';
+import {AppState, UserData} from '../../common/types';
 import {DataStatus} from '../../common/enums';
 
 const selectUser = (state: AppState): string | undefined => {
@@ -9,4 +9,8 @@ const selectUserDataStatus = (state: AppState): DataStatus => {
   return state.user.dataStatus;
 };
 
-export {selectUser, selectUserDataStatus};
+const selectUserInfo = (state: AppState): UserData | undefined => {
+  return state.user.userInfo;
+};
+
+export {selectUser, selectUserDataStatus, selectUserInfo};

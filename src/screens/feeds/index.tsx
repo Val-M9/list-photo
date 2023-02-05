@@ -14,8 +14,6 @@ const Feeds: FC = () => {
   const isLoading = imagesDataStatus === DataStatus.PENDING;
   const [page, setPage] = useState(1);
 
-  console.log(imagesDataStatus);
-
   useLayoutEffect(() => {
     dispatch(fetchImages({page: page, limit: 10}));
   }, [dispatch, page]);
@@ -23,8 +21,6 @@ const Feeds: FC = () => {
   const handleLoadMore = () => {
     setPage((prev) => (prev += 1));
   };
-
-  console.log(images);
 
   return (
     <ScreenWrapper>
