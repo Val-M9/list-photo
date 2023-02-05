@@ -7,7 +7,7 @@ import {MainNavigation} from './tab-navigation';
 import {MainScreenName, RootScreenName} from '../common/enums';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {selectUser} from '../store/selectors';
-import {getUser} from '../store/actions';
+import {fetchUser} from '../store/actions';
 import {Login} from '../screens';
 
 const NativeStack = createNativeStackNavigator();
@@ -21,7 +21,7 @@ const Navigation: FC = () => {
   const user = useAppSelector(selectUser);
 
   useEffect(() => {
-    dispatch(getUser());
+    dispatch(fetchUser());
   }, [dispatch]);
 
   return (

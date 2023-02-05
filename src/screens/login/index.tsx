@@ -6,7 +6,7 @@ import {joiResolver} from '@hookform/resolvers/joi';
 import {DEFAULT_LOGIN_VALUES} from '../../common/constants';
 import {UserSignInDto, MainNavigationProps} from '../../common/types';
 import {MainScreenName} from '../../common/enums';
-import {getUser, signInUser} from '../../store/actions';
+import {fetchUser, signInUser} from '../../store/actions';
 import {loginRules} from '../../validation/login-rules';
 import {useAppDispatch, useCustomTheme} from '../../hooks';
 import {Button, Input, ScreenWrapper} from '../../components';
@@ -28,7 +28,7 @@ const Login: FC = () => {
 
   const onSubmit = async (values: UserSignInDto) => {
     await dispatch(signInUser(values.email));
-    const user = await dispatch(getUser());
+    const user = await dispatch(fetchUser());
     if (user) {
       navigation.navigate(MainScreenName.MAIN);
     }
