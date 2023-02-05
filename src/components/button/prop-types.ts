@@ -1,5 +1,5 @@
 import {TouchableOpacityProps} from 'react-native';
 
-export type ButtonProps = Omit<TouchableOpacityProps, 'style'> & {
+export type ButtonProps = TouchableOpacityProps & {
   label: string;
 };

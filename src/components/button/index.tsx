@@ -4,13 +4,17 @@ import {useCustomTheme} from '../../hooks';
 import {ButtonProps} from './prop-types';
 import {styles} from './styles';
 
-const Button: FC<ButtonProps> = ({label, onPress, disabled}) => {
+const Button: FC<ButtonProps> = ({label, onPress, disabled, style}) => {
   const {colors} = useCustomTheme();
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.btn, {backgroundColor: disabled ? colors.btnDisabled : colors.btnBackground}]}>
+      style={[
+        styles.btn,
+        {backgroundColor: disabled ? colors.btnDisabled : colors.btnBackground},
+        style,
+      ]}>
       <Text style={[styles.btnText, {color: colors.white}]}>{label}</Text>
     </TouchableOpacity>
   );
